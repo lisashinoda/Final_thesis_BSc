@@ -5,13 +5,13 @@
  
  
 # Requirement
- Python 3.6.6
- Keras 2.3.1
- matplotlib 3.1.2
- numpy 1.18.0
- pandas 0.25.3
- scikit-learn 0.22
- tensorflow 1.8.0
+ -Python 3.6.6
+ -Keras 2.3.1
+ -matplotlib 3.1.2
+ -numpy 1.18.0
+ -pandas 0.25.3
+ -scikit-learn 0.22
+ -tensorflow 1.8.0
 
  
 # Usage

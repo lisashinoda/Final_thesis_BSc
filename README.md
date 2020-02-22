@@ -1,7 +1,7 @@
 # Features
-##### Code for used in my final thesis in BSc.
-##### Visualize the correlation of environmental data and perila disease data.
-##### Also, predicting perila disease using machine learning methods(Logistic Regression, SVM, RF, LSTM)
+Code for used in my final thesis in BSc.<br>
+Visualize the correlation of environmental data and perila disease data.<br>
+Also, predicting perila disease using machine learning methods(Logistic Regression, SVM, RF, LSTM)
  
  
 # Requirement
@@ -72,9 +72,9 @@ python LSTM.py
 ```
  
 # Note
-#### Excel files are supposed to create in  the "excel" file.
-#### Visualize graphs(counter plot graphs) are in the "graph" file.
-#### Logistic analysys graphs are in the "logisitic_graph" file.
+Excel files are supposed to create in  the "excel" file.<br>
+Visualize graphs(counter plot graphs) are in the "graph" file.<br>
+Logistic analysys graphs are in the "logisitic_graph" file.
  
 # Author
 * Lisa Shinoda

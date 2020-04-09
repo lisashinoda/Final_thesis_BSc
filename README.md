@@ -25,7 +25,7 @@ cd data_new
 python merge_data.py
 ```
 ### Make the data suitable for machine learning methods.
-### (Predict disease using by three days environmental data)
+### (Predict disease using three days environmental data)
 
 ```bash
 python shift.py

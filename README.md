@@ -1,7 +1,7 @@
 # Features
 Code, which is used in my final thesis in BSc.<br>
 Visualize the correlation of environmental data and perila disease data.<br>
-Also, predicting perila disease using machine learning methods(Logistic Regression, SVM, RF, LSTM)
+Also, predicting perila diseases using machine learning methods(Logistic Regression, SVM, RF, LSTM)
  
  
 # Requirement

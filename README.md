@@ -1,5 +1,5 @@
 # Features
-Code for used in my final thesis in BSc.<br>
+Code, which is used in my final thesis in BSc.<br>
 Visualize the correlation of environmental data and perila disease data.<br>
 Also, predicting perila disease using machine learning methods(Logistic Regression, SVM, RF, LSTM)
  
@@ -36,7 +36,7 @@ python shift.py
 python filter.py
 ```
 
-### Emit the environmental data which shows high correlation between other one.
+### Emit the environmental data which shows high correlation between the other one.
 ```bash
 python corr.py
 ```
@@ -77,5 +77,5 @@ Visualize graphs(counter plot graphs) are in the "graph" file.<br>
 Logistic analysys graphs are in the "logisitic_graph" file.
  
 # Author
-* Lisa Shinoda
-* Kyoto University / Agriculture
+* Lisa 
+* Kyoto University 

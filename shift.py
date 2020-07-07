@@ -18,6 +18,8 @@ for i in number:
     disease['date']=pd.to_datetime(disease['date'])
     df_train['date']=pd.to_datetime(df_train['date'])
     df_test['date']=pd.to_datetime(df_test['date'])
+    df_train=df_train.set_index('date')
+    df_test=df_test.set_index('date')
     df_train2=pd.merge(disease,df_train.shift(1),on='date')
     df_train3=pd.merge(df_train2,df_train.shift(2),on='date')
     df_train4=pd.merge(df_train3,df_train.shift(3),on='date')

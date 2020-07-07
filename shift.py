@@ -9,6 +9,7 @@ path=os.path.join(current_path)
 save_path=os.path.join(path,'excel')
 if not os.path.isdir(save_path):
     os.makedirs(save_path)
+#%%
 number=['number1','number2','number3']
 for i in number:
     path1=os.path.join(path,'merge_'+str(i)+'.csv')

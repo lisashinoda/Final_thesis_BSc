@@ -41,7 +41,7 @@ def corr_column(df, threshold):
             df_corr.drop([delete_column], axis=1, inplace=True)
     return df_corr.columns
 #%%
-data=['all']
+data=['number1','number2','number3','all']
 for i in data:
     x_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37])
     x_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'),usecols=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37])

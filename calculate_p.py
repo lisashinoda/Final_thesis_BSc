@@ -33,21 +33,47 @@ for i in ['number1','number2','number3','all']:
     print(calculate(x_train,y_train,x_test,y_test))
 #%%
 for i in ['number1','number2','number3','all']:
-    path2=os.path.join(path,'merge_'+str(i)+'_train.csv')
-    path3=os.path.join(path,'merge_'+str(i)+'_test.csv')
+    path_train=os.path.join(path,''+str(i)+'_corr_train.csv')
+    path_test=os.path.join(path,''+str(i)+'__corr_test.csv')
+    path_train2=os.path.join(path,'merge_'+str(i)+'_train.csv')
+    path_test2=os.path.join(path,'merge_'+str(i)+'_test.csv')
+    train2=pd.read_csv(path_train2,usecols=[0,1])
+    test2=pd.read_csv(path_test2,usecols=[0,1])
     if i=='number1':
-        train=pd.read_csv(path2,usecols=[0,1,2,5,10,11,12,13,22,23,24,25,29,33,34,35,36])
-        test=pd.read_csv(path3,usecols=[0,1,2,5,10,11,12,13,22,23,24,25,29,33,34,35,36])
+        train=pd.read_csv(path_train,usecols=[0,1,4,5,6,7,11,12,13,14,15,17,18,19,20])
+        test=pd.read_csv(path_test,usecols=[0,1,4,5,6,7,11,12,13,14,15,17,18,19,20])
     if i=='number2':
-        train=pd.read_csv(path2,usecols=[0,1,2,6,11,13,17,23,25,35,37])
-        test=pd.read_csv(path3,usecols=[0,1,2,6,11,13,17,23,25,35,37])
+        train=pd.read_csv(path_train,usecols=[1,2,5,7,9,12,14,16,20,22])
+        test=pd.read_csv(path_test,usecols=[1,2,5,7,9,12,14,16,20,22])
     if i=='number3':
-        train=pd.read_csv(path2,usecols=[0,1,4,6,11,12,13,22,24,33,34,35,37])
-        test=pd.read_csv(path3,usecols=[0,1,4,6,11,12,13,22,24,33,34,35,37])
+        train=pd.read_csv(path_train,usecols=[0,2,5,6,7,8,12,14,19,20,21,23])
+        test=pd.read_csv(path_test,usecols=[0,2,5,6,7,8,12,14,19,20,21,23])
     if i=='all':
-        train=pd.read_csv(path2,usecols=[0,1,2,5,10,13,17,25,26,29,32,35,37])
-        test=pd.read_csv(path3,usecols=[0,1,2,5,10,13,17,25,26,29,32,35,37])
-    train.to_csv(os.path.join(path,'crr_p_'+str(i)+'_train.csv'), encoding='utf_8',index=False)
-    test.to_csv(os.path.join(path,'crr_p_'+str(i)+'_test.csv'), encoding='utf_8',index=False)
+        train=pd.read_csv(path_train,usecols=[0,1,4,7,8,14,15,16,17,20,22])
+        test=pd.read_csv(path_test,usecols=[0,1,4,7,8,14,15,16,17,20,22])
+    df_train=pd.concat([train2,train],axis=1)
+    df_test=pd.concat([test2,test],axis=1)
+    df_train.to_csv(os.path.join(path,'crr_p_'+str(i)+'_train.csv'), encoding='utf_8',index=False)
+    df_test.to_csv(os.path.join(path,'crr_p_'+str(i)+'_test.csv'), encoding='utf_8',index=False)
+    
+
+# #%%
+# for i in ['number1','number2','number3','all']:
+#     path2=os.path.join(path,'merge_'+str(i)+'_train.csv')
+#     path3=os.path.join(path,'merge_'+str(i)+'_test.csv')
+#     if i=='number1':
+#         train=pd.read_csv(path2,usecols=[0,1,2,5,10,11,12,13,22,23,24,25,29,33,34,35,36])
+#         test=pd.read_csv(path3,usecols=[0,1,2,5,10,11,12,13,22,23,24,25,29,33,34,35,36])
+#     if i=='number2':
+#         train=pd.read_csv(path2,usecols=[0,1,2,6,11,13,17,23,25,35,37])
+#         test=pd.read_csv(path3,usecols=[0,1,2,6,11,13,17,23,25,35,37])
+#     if i=='number3':
+#         train=pd.read_csv(path2,usecols=[0,1,4,6,11,12,13,22,24,33,34,35,37])
+#         test=pd.read_csv(path3,usecols=[0,1,4,6,11,12,13,22,24,33,34,35,37])
+#     if i=='all':
+#         train=pd.read_csv(path2,usecols=[0,1,2,5,10,13,17,25,26,29,32,35,37])
+#         test=pd.read_csv(path3,usecols=[0,1,2,5,10,13,17,25,26,29,32,35,37])
+#     train.to_csv(os.path.join(path,'crr_p_'+str(i)+'_train.csv'), encoding='utf_8',index=False)
+#     test.to_csv(os.path.join(path,'crr_p_'+str(i)+'_test.csv'), encoding='utf_8',index=False)
 
 # %%

@@ -55,7 +55,7 @@ for i in ['number1','number2','number3','all']:
     df_test=pd.concat([test2,test],axis=1)
     df_train.to_csv(os.path.join(path,'crr_p_'+str(i)+'_train.csv'), encoding='utf_8',index=False)
     df_test.to_csv(os.path.join(path,'crr_p_'+str(i)+'_test.csv'), encoding='utf_8',index=False)
-    
+    $$
 
 # #%%
 # for i in ['number1','number2','number3','all']:

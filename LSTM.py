@@ -13,6 +13,7 @@ from keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from keras.layers import LSTM
 from sklearn.metrics import confusion_matrix
+import pandas as pd
 #%%
 def activate(train_x,train_y,test_x,test_y):
     for i in number:
@@ -47,8 +48,8 @@ for i in number:
     train_y=pd.read_csv(path_train,usecols=[1])
     test_x=pd.read_csv(path_test,usecols=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37])
     test_y=pd.read_csv(path_test,usecols=[1])
-    train_x=train_x.ix[:,[0,3,6,9,12,15,18,21,24,27,30,33,1,4,7,10,13,16,19,22,25,28,31,34,2,5,8,11,14,17,20,23,26,29,32,35]]
-    test_x=test_x.ix[:,[0,3,6,9,12,15,18,21,24,27,30,33,1,4,7,10,13,16,19,22,25,28,31,34,2,5,8,11,14,17,20,23,26,29,32,35]]
+    train_x=train_x.loc[:,[0,3,6,9,12,15,18,21,24,27,30,33,1,4,7,10,13,16,19,22,25,28,31,34,2,5,8,11,14,17,20,23,26,29,32,35]]
+    test_x=test_x.loc[:,[0,3,6,9,12,15,18,21,24,27,30,33,1,4,7,10,13,16,19,22,25,28,31,34,2,5,8,11,14,17,20,23,26,29,32,35]]
     train_x= train_x.values.reshape((train_x.shape[0], 3, 12))
     test_x = test_x.values.reshape((test_x.shape[0], 3, 12))
     print(activate(train_x,train_y,test_x,test_y))

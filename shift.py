@@ -13,7 +13,7 @@ if not os.path.isdir(save_path):
 number=['number1','number2','number3']
 for i in number:
     path1=os.path.join(path,'merge_'+str(i)+'.csv')
-    df = pd.read_csv(path1, encoding="shift-jis",usecols=[0,2,3,4,5,6,7,8,9,10,11,12,13])
+    df = pd.read_csv(path1, encoding="shift-jis",usecols=[0,2,3,4,5,6,7,8,9,10,11,12,13,14])
     disease = pd.read_csv(path1, encoding="shift-jis", usecols=[0,1])
     df_train, df_test = train_test_split(df, test_size=0.3, shuffle=False)
     disease['date']=pd.to_datetime(disease['date'])
@@ -25,7 +25,7 @@ for i in number:
     df_train3=pd.merge(df_train2,df_train.shift(2),on='date')
     df_train4=pd.merge(df_train3,df_train.shift(3),on='date')
     df_train4=df_train4.dropna()
-    df_train4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
+    df_train4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z','housa':'housa_z'},inplace=True)
     df_train4.drop_duplicates(subset='date')
     df_train4=df_train4.set_index('date')
     df_train4.to_csv(os.path.join(save_path,'merge_'+str(i)+'_train.csv'),encoding='utf_8',index=True)
@@ -58,7 +58,7 @@ merge_test.to_csv(os.path.join(save_path,'merge_all_test.csv'), encoding='utf_8'
 # %%--テストデータ内の病気データをカウント
 dataset=['number1','number2','number3','all']
 for i in dataset:
-    df=pd.read_csv(os.path.join(save_path,'merge_'+str(i)+'_train.csv'))
+    df=pd.read_csv(os.path.join(path,'merge_'+str(i)+'.csv'))
     vc = df['disease'].value_counts()
     print(vc)
 

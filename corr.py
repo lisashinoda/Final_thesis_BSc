@@ -47,8 +47,8 @@ for i in data:
     x_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'),usecols=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40])
     train_corr=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'))
     test_corr=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'))
-    train_corr=train_corr[corr_column(x_train,0.95)]
-    train_corr.to_csv(os.path.join(path,''+str(i)+'_corr_train.csv'), encoding='utf_8',index=False)
-    test_corr=test_corr[corr_column(x_train,0.95)]
-    test_corr.to_csv(os.path.join(path,''+str(i)+'__corr_test.csv'), encoding='utf_8',index=False)
+    train_corr=train_corr[corr_column(x_train,0.90)]
+    train_corr.to_csv(os.path.join(path,''+str(i)+'_corr_train_2.csv'), encoding='utf_8',index=False)
+    test_corr=test_corr[corr_column(x_train,0.90)]
+    test_corr.to_csv(os.path.join(path,''+str(i)+'__corr_test_2.csv'), encoding='utf_8',index=False)
 #%%

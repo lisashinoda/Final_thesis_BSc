@@ -42,6 +42,8 @@ import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'')
 number=['number1','number2','number3','all']
+
+
 #%%
 ##特徴量選択前
 for i in number:

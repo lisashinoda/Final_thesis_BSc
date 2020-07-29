@@ -44,8 +44,8 @@ if not os.path.isdir(save_path):
 ##特徴量選択前
 for i in number:
     k='normal'
-    path_train=os.path.join(current_path,'excel','merge_'+str(i)+'_train.csv')
-    path_test=os.path.join(current_path,'excel','merge_'+str(i)+'_test.csv')
+    path_train=os.path.join(current_path,'excel','merge_'+str(i)+'_train_2.csv')
+    path_test=os.path.join(current_path,'excel','merge_'+str(i)+'_test_2.csv')
     print(Logistic(path_train,path_test))
 #%%
 ##方法A

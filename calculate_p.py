@@ -25,10 +25,10 @@ def calculate(x_train,y_train,x_test,y_test):
     return result.pvalues
 #%%--p値を計算
 for i in ['number1','number2','number3','all']:
-    x_train=pd.read_csv(os.path.join(path,''+str(i)+'_corr_train.csv'))
-    y_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[1])
-    x_test=pd.read_csv(os.path.join(path,''+str(i)+'__corr_test.csv'))
-    y_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'),usecols=[1])
+    x_train=pd.read_csv(os.path.join(path,''+str(i)+'_corr_train_2.csv'))
+    y_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train_2.csv'),usecols=[1])
+    x_test=pd.read_csv(os.path.join(path,''+str(i)+'__corr_test_2.csv'))
+    y_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test_2.csv'),usecols=[1])
     print(calculate(x_train,y_train,x_test,y_test))
 #%%
 for i in ['number1','number2','number3','all']:

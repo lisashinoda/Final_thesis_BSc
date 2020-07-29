@@ -33,14 +33,14 @@ for i in number:
     df_test3=pd.merge(df_test2,df_test.shift(2),on='date')
     df_test4=pd.merge(df_test3,df_test.shift(3),on='date')
     df_test4=df_test4.dropna()
-    df_test4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
+    df_test4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z','housa':'housa_z'},inplace=True)
     df_test4.drop_duplicates(subset='date')
     df_test4=df_test4.set_index('date')
     df_test4.to_csv(os.path.join(save_path,'merge_'+str(i)+'_test.csv'),encoding='utf_8',index=True)
 #%% データセットall作成
 csv_cont_all_train= []
 csv_cont_all_test= []
-number=['number1','number2','number3']
+number=['number1','number2','number3','all']
 for i in number:
     train=os.path.join(save_path,'merge_'+str(i)+'_train.csv')
     test=os.path.join(save_path,'merge_'+str(i)+'_test.csv')

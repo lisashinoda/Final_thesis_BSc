@@ -27,7 +27,6 @@ def calculate(x_train,y_train,x_test,y_test):
 for i in ['number1','number2','number3','all']:
     x_train=pd.read_csv(os.path.join(path,''+str(i)+'_corr_train.csv'))
     y_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[1])
-    print(y_train)
     x_test=pd.read_csv(os.path.join(path,''+str(i)+'__corr_test.csv'))
     y_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'),usecols=[1])
     print(calculate(x_train,y_train,x_test,y_test))
@@ -40,22 +39,22 @@ for i in ['number1','number2','number3','all']:
     train2=pd.read_csv(path_train2,usecols=[0,1])
     test2=pd.read_csv(path_test2,usecols=[0,1])
     if i=='number1':
-        train=pd.read_csv(path_train,usecols=[0,1,4,5,6,7,11,12,13,14,15,17,18,19,20])
-        test=pd.read_csv(path_test,usecols=[0,1,4,5,6,7,11,12,13,14,15,17,18,19,20])
+        train=pd.read_csv(path_train,usecols=[0,2,4,5,6,7,9,10,12,13,14,15,18,19,20,21,22,23])
+        test=pd.read_csv(path_test,usecols=[0,2,4,5,6,7,9,10,12,13,14,15,18,19,20,21,22,23])
     if i=='number2':
-        train=pd.read_csv(path_train,usecols=[1,2,5,7,9,12,14,16,20,22])
-        test=pd.read_csv(path_test,usecols=[1,2,5,7,9,12,14,16,20,22])
+        train=pd.read_csv(path_train,usecols=[1,2,5,7,10,13,15,18,21,22,24])
+        test=pd.read_csv(path_test,usecols=[1,2,5,7,10,13,15,18,21,22,24])
     if i=='number3':
-        train=pd.read_csv(path_train,usecols=[0,2,5,6,7,8,12,14,19,20,21,23])
-        test=pd.read_csv(path_test,usecols=[0,2,5,6,7,8,12,14,19,20,21,23])
+        train=pd.read_csv(path_train,usecols=[1,2,5,6,7,8,9,11,12,13,14,15,16,22,23,24])
+        test=pd.read_csv(path_test,usecols=[1,2,5,6,7,8,9,11,12,13,14,15,16,22,23,24])
     if i=='all':
-        train=pd.read_csv(path_train,usecols=[0,1,4,7,8,14,15,16,17,20,22])
-        test=pd.read_csv(path_test,usecols=[0,1,4,7,8,14,15,16,17,20,22])
+        train=pd.read_csv(path_train,usecols=[0,1,4,6,7,8,9,14,15,18,19,22,23,24])
+        test=pd.read_csv(path_test,usecols=[0,1,4,6,7,8,9,14,15,18,19,22,23,24])
     df_train=pd.concat([train2,train],axis=1)
     df_test=pd.concat([test2,test],axis=1)
     df_train.to_csv(os.path.join(path,'crr_p_'+str(i)+'_train.csv'), encoding='utf_8',index=False)
     df_test.to_csv(os.path.join(path,'crr_p_'+str(i)+'_test.csv'), encoding='utf_8',index=False)
-    $$
+    
 
 # #%%
 # for i in ['number1','number2','number3','all']:

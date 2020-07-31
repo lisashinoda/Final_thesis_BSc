@@ -10,6 +10,25 @@ from sklearn.model_selection import train_test_split
 number=["x","y","z"]
 day=['1','2','3']
 def data_see(df):
+     for i,k in zip (number,day):
+        sns.set()
+        sns.set_style('whitegrid')
+        sns.set_palette('Set1')
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+        ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+        ax.set_xlabel('Housa')
+        ax.set_ylabel('Count')
+        if not j == 'merge_all':
+            ax.set(xlim=(0,13), ylim=(0,30))
+        if  j == 'merge_all':
+            ax.set(xlim=(0,13))
+        plt.legend(['Disease', 'Not disease'])
+        #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
+        image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
+        plt.savefig(image_path)
+#%%%
     for i,k in zip (number,day):
         sns.set()
         sns.set_style('whitegrid')
@@ -227,6 +246,25 @@ def data_see(df):
             ax.set(xlim=(65,103))
         image_path=os.path.join(save_path,''+str(j)+'_maxH(t-'+str(k)+').png')
         plt.savefig(image_path)
+
+    for i,k in zip (number,day):
+        sns.set()
+        sns.set_style('whitegrid')
+        sns.set_palette('Set1')
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+        ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+        ax.set_xlabel('Mean Temperature 20cm(°c)')
+        ax.set_ylabel('Count')
+        if not j == 'merge_all':
+            ax.set(xlim=(0,13), ylim=(0,30))
+        if  j == 'merge_all':
+            ax.set(xlim=(0,13))
+        plt.legend(['Disease', 'Not disease'])
+        #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
+        image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
+        plt.savefig(image_path)
 # %%
 import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
@@ -241,3 +279,6 @@ for j in data:
     df.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
     data_see(df)
 
+
+
+# %%

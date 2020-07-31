@@ -10,6 +10,24 @@ from sklearn.model_selection import train_test_split
 number=["x","y","z"]
 day=['1','2','3']
 def data_see(df):
+    sns.set()
+    sns.set_style('whitegrid')
+    sns.set_palette('Set1')
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+    ax.hist(df.query('disease=="1"')['days'], bins=50, alpha=0.6)
+    ax.hist(df.query('disease=="0"')['days'], bins=50, alpha=0.6)
+    ax.set_xlabel('days')
+    ax.set_ylabel('Count')
+    if not j == 'merge_all':
+        ax.set(xlim=(0,120), ylim=(0,10))
+    if  j == 'merge_all':
+        ax.set(xlim=(0,120))
+    plt.legend(['Disease', 'Not disease'])
+        #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
+    image_path=os.path.join(save_path,''+str(j)+'_days.png')
+    plt.savefig(image_path)
+#%%
     for i,k in zip (number,day):
         sns.set()
         sns.set_style('whitegrid')
@@ -236,8 +254,11 @@ data=['merge_number1','merge_number2','merge_number3','merge_all']
 if not os.path.isdir(save_path):
     os.makedirs(save_path)
 for j in data:
-    data=os.path.join(current_path,'excel',''+str(j)+'_train.csv')
+    data=os.path.join(current_path,'excel',''+str(j)+'_train_2.csv')
     df=pd.read_csv(data)
     df.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
     data_see(df)
 
+
+
+# %%

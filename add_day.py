@@ -3,6 +3,20 @@ import numpy as np
 import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
+#%%
+current_path=os.path.dirname(os.path.abspath("__file__"))
+path_before=os.path.join(current_path)
+number=['number1','number2','number3']
+df_days=pd.read_csv(os.path.join(path_before,'days.csv'))
+df_days['date']=pd.to_datetime(df_days['date'])
+for i in number:
+    path2=os.path.join(path_before,'merge_'+str(i)+'.csv')
+    data=pd.read_csv(path2,usecols=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14])
+    data['date']=pd.to_datetime(data['date'])
+    merge_content_all=pd.merge(data,df_days,on='date')
+    merge_content_all.to_csv('merge_'+str(i)+'_2.csv', encoding='utf_8',index=False)
+
+#%%
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path)
 save_path=os.path.join(path,'excel')
@@ -18,7 +32,8 @@ for i in number:
     df_test2=pd.merge(df_test,df_days,on='date')
     df_train2.dropna()
     df_test2.dropna()
-    print(df_train2)
+    print(df_test2)
+#%%
     df_train2.to_csv(os.path.join(save_path,'merge_'+str(i)+'_train_2.csv'), encoding='utf_8',index=False)
     df_test2.to_csv(os.path.join(save_path,'merge_'+str(i)+'_test_2.csv'), encoding='utf_8',index=False)
 

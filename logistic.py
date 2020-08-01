@@ -36,7 +36,7 @@ def Logistic(path_train,path_test):
 
     y_pred_prob=clf.predict_proba(x_test)[:,1]
     # save the probability
-    pd.DataFrame(y_pred_prob).to_csv(os.path.join(save_path2,'prob_'+str(i)+'_logistic_'+str(k)+'.csv'),encoding='utf_8',index=True)
+    pd.DataFrame(y_pred_prob).to_csv(os.path.join(current_path,'prob','csv','prob_'+str(i)+'_logistic_'+str(k)+'.csv'),encoding='utf_8',index=True)
     plt.figure(figsize=(20, 11)) 
     fpr, tpr,thresholds = metrics.roc_curve(y_test, y_pred_prob)
     auc = metrics.auc(fpr, tpr)
@@ -47,7 +47,6 @@ def Logistic(path_train,path_test):
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.grid(True)
-    plt.show()
     img_path2=os.path.join(save_path2,''+str(i)+'_logistic_'+str(k)+'.png')
     plt.savefig(img_path2)
     return clf.score(x_test,y_test),classification_report(y_true, y_pred),confusion_matrix(y_true, y_pred)
@@ -56,7 +55,7 @@ import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'')
 save_path=os.path.join(current_path,'logistic_graph')
-save_path2=os.path.join(current_path,'prob')
+save_path2=os.path.join(current_path,'prob','details')
 number=['number1','number2','number3','all']
 if not os.path.isdir(save_path):
     os.makedirs(save_path)

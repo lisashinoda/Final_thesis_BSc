@@ -7,6 +7,9 @@ from sklearn.ensemble import RandomForestClassifier as RFC
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
+from sklearn import metrics
+import numpy as np
+#%%
 
 def randomforest(path_train,path_test):
     from sklearn.preprocessing import MinMaxScaler
@@ -35,32 +38,50 @@ def randomforest(path_train,path_test):
     from sklearn.metrics import classification_report
     score=gs.score(x_test, y_test) 
     y_true, y_pred = y_test, gs.predict(x_test)
+
+    y_pred_prob=gs.predict_proba(x_test)[:,1]
+    # save the probability
+    pd.DataFrame(y_pred_prob).to_csv(os.path.join(current_path,'prob','csv','prob_'+str(i)+'_rf_'+str(k)+'.csv'),encoding='utf_8',index=True)
+    plt.figure(figsize=(20, 11)) 
+    fpr, tpr,thresholds = metrics.roc_curve(y_test, y_pred_prob)
+    auc = metrics.auc(fpr, tpr)
+    plt.plot(fpr, tpr, label='ROC curve (area = %.2f)'%auc)
+    plt.plot(np.linspace(1, 0, len(fpr)), np.linspace(1, 0, len(fpr)), label='Random ROC curve (area = %.2f)'%0.5, linestyle = '--', color = 'gray')
+    plt.legend()
+    plt.title('ROC curve')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.grid(True)
+    img_path2=os.path.join(save_path2,''+str(i)+'_rf_'+str(k)+'.png')
+    plt.savefig(img_path2)
     report=classification_report(y_true, y_pred)
     return best_estimator,score,report,confusion_matrix(y_true, y_pred)
-# %%
 import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'')
+save_path2=os.path.join(current_path,'prob','details')
 number=['number1','number2','number3','all']
 #%%
 ##特徴量選択前
 for i in number:
+    k='normal'
     path_train=os.path.join(current_path,'excel','merge_'+str(i)+'_train.csv')
     path_test=os.path.join(current_path,'excel','merge_'+str(i)+'_test.csv')
     print(randomforest(path_train,path_test))
-#%%
 ##方法A
 for i in number:
+    k='selectA'
     path_train=os.path.join(current_path,'excel','select_'+str(i)+'_train.csv')
     path_test=os.path.join(current_path,'excel','select_'+str(i)+'_test.csv')
     print(randomforest(path_train,path_test))
-#%%
 ##方法B
 import os
 for i in number:
+    k='selectB'
     path_train=os.path.join(current_path,'excel','crr_p_'+str(i)+'_train.csv')
     path_test=os.path.join(current_path,'excel','crr_p_'+str(i)+'_test.csv')
     print(randomforest(path_train,path_test))
+
 
 
 # %%

@@ -13,6 +13,7 @@ import os
     
 # %%
 def ROC (model):
+    
     prob1=[]
     prob2=[]
     prob3=[]
@@ -60,6 +61,14 @@ def ROC (model):
         plt.savefig(img_path2)
         prob.clear()
 #%%
-ROC(logistic)
+ROC('logistic')
 #%%
-ROC(svm)
+ROC('svm')
+
+# %%
+ROC('rf')
+
+# %%
+ROC('xg')
+
+# %%

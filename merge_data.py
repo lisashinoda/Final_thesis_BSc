@@ -33,32 +33,37 @@ for i in file_name:
             connect2=pd.merge(mean,min,on='date')
             connect3=pd.merge(connect2,max,on='date')
             connect3.rename(columns={'T20_x': 'T20_mean', 'ST_x': 'ST_mean', 'T60_x':'T60_mean','H_x':'H_mean', 'T20_y':'T20_min', 'ST_y':'ST_min', 'T60_y':'T60_min', 'H_y':'H_min', 'T20':'T20_max','ST':'ST_max', 'T60':'T60_max', 'H':'H_max'},inplace=True)
+            print(connect3.columns)
             connect3.to_csv(os.path.join(path,str(i),str(j),'environment_data.csv'))
 #%%--データセットごとにまとめる
 csv_cont= []
-disease_red=[]
+disease_yellow=[]
 for i in number:
     for j in file_name:
         path3=os.path.join(path,str(j),str(i),'environment_data.csv')
         if os.path.exists(path3):
             csv_cont.append(pd.read_csv(path3))
-        path5=os.path.join(path,str(j),str(i),'disease_red.csv')
+        path5=os.path.join(path,str(j),str(i),'disease_yellow.csv')
         if os.path.exists(path5):
-            disease_red.append(pd.read_csv(path5))
+            disease_yellow.append(pd.read_csv(path5))
     # リスト形式にまとめたCSVファイルを結合
     merge_content = pd.concat(csv_cont)
+    #merge_content.info()
     csv_cont.clear()
-    merge_disease = pd.concat(disease_red)
+    merge_disease = pd.concat(disease_yellow)
     if i== 'number1':
         merge_disease=merge_disease.drop(columns='Date/Time')
+    #if i== 'number3':
+      #  merge_disease=merge_disease.drop(columns='Date/Time')
     merge_disease['date'] = pd.to_datetime(merge_disease['date'])
-    disease_red.clear()
+    disease_yellow.clear()
     merge_content['date'] = pd.to_datetime(merge_content['date'])
     merge=pd.merge(merge_disease,merge_content,on='date')
     merge=merge.dropna()
     merge.info()
     merge.to_csv('merge_'+str(i)+'.csv')
 ## データセットall作成
+#%%
 csv_cont_all= []
 for i in number:
     path4=os.path.join(path_before,'merge_'+str(i)+'.csv')
@@ -68,3 +73,6 @@ merge_content_all = pd.concat(csv_cont_all)
 merge_content_all['date'] = pd.to_datetime(merge_content_all['date'])
 merge_content_all.info()
 merge_content_all.to_csv('merge_all.csv', encoding='utf_8',index=False)
+
+
+# %%

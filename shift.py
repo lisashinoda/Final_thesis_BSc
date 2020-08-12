@@ -13,8 +13,9 @@ if not os.path.isdir(save_path):
 number=['number1','number2','number3']
 for i in number:
     path1=os.path.join(path,'merge_'+str(i)+'.csv')
-    df = pd.read_csv(path1, encoding="shift-jis",usecols=[0,2,3,4,5,6,7,8,9,10,11,12,13])
-    disease = pd.read_csv(path1, encoding="shift-jis", usecols=[0,1])
+    df = pd.read_csv(path1, encoding="shift-jis",usecols=['date','T20_mean','ST_mean','T60_mean','H_mean','T20_min','ST_min','T60_min','H_min','T20_max','ST_max','T60_max','H_max'])
+    #df['date']=pd.to_datetime(df_train['date'])
+    disease = pd.read_csv(path1, encoding="shift-jis", usecols=['date','disease'])
     df_train, df_test = train_test_split(df, test_size=0.3, shuffle=False)
     disease['date']=pd.to_datetime(disease['date'])
     df_train['date']=pd.to_datetime(df_train['date'])

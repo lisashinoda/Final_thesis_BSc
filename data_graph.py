@@ -247,24 +247,24 @@ def data_see(df):
         image_path=os.path.join(save_path,''+str(j)+'_maxH(t-'+str(k)+').png')
         plt.savefig(image_path)
 
-    for i,k in zip (number,day):
-        sns.set()
-        sns.set_style('whitegrid')
-        sns.set_palette('Set1')
-        fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
-        ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
-        ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
-        ax.set_xlabel('Mean Temperature 20cm(°c)')
-        ax.set_ylabel('Count')
-        if not j == 'merge_all':
-            ax.set(xlim=(0,13), ylim=(0,30))
-        if  j == 'merge_all':
-            ax.set(xlim=(0,13))
-        plt.legend(['Disease', 'Not disease'])
-        #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
-        image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
-        plt.savefig(image_path)
+    # for i,k in zip (number,day):
+    #     sns.set()
+    #     sns.set_style('whitegrid')
+    #     sns.set_palette('Set1')
+    #     fig = plt.figure()
+    #     ax = fig.add_subplot(1, 1, 1)
+    #     ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+    #     ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+    #     ax.set_xlabel('Mean Temperature 20cm(°c)')
+    #     ax.set_ylabel('Count')
+    #     if not j == 'merge_all':
+    #         ax.set(xlim=(0,13), ylim=(0,30))
+    #     if  j == 'merge_all':
+    #         ax.set(xlim=(0,13))
+    #     plt.legend(['Disease', 'Not disease'])
+    #     #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
+    #     image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
+    #     plt.savefig(image_path)
 # %%
 import os
 current_path=os.path.dirname(os.path.abspath("__file__"))

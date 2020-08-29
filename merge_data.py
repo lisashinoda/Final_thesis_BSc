@@ -45,9 +45,11 @@ for i in file_name:
 #%%--データセットごとにまとめる
 csv_cont= []
 disease_red=[]
+train=['20161115data','20170113data','20170510data','20170731data','20171012data','20171218data','20180322data','20180528data','20180810data','20181026data','20180108data']
+test=['20190306data','20190624data','20191017data','20100806data']
 for i in number:
-    for j in file_name:
-        path3=os.path.join(path,str(j),str(i),'environment_data.csv')
+    for j in train:
+        path3=os.path.join(path,str(j),str(i),'shift_'+str(j)+'.csv')
         if os.path.exists(path3):
             csv_cont.append(pd.read_csv(path3))
         path5=os.path.join(path,str(j),str(i),'disease_red.csv')
@@ -64,15 +66,59 @@ for i in number:
     merge_content['date'] = pd.to_datetime(merge_content['date'])
     merge=pd.merge(merge_disease,merge_content,on='date')
     merge=merge.dropna()
-    merge.info()
-    merge.to_csv('merge_'+str(i)+'.csv')
+    merge.to_csv('merge_'+str(i)+'_train.csv')
+#%%
+for i in number:
+    for j in test:
+        path3=os.path.join(path,str(j),str(i),'shift_'+str(j)+'.csv')
+        if os.path.exists(path3):
+            csv_cont.append(pd.read_csv(path3))
+        path5=os.path.join(path,str(j),str(i),'disease_red.csv')
+        if os.path.exists(path5):
+            disease_red.append(pd.read_csv(path5))
+    # リスト形式にまとめたCSVファイルを結合
+    merge_content = pd.concat(csv_cont)
+    csv_cont.clear()
+    merge_disease = pd.concat(disease_red)
+    merge_disease['date'] = pd.to_datetime(merge_disease['date'])
+    disease_red.clear()
+    merge_content['date'] = pd.to_datetime(merge_content['date'])
+    merge=pd.merge(merge_disease,merge_content,on='date')
+    merge=merge.dropna()
+    merge.to_csv('merge_'+str(i)+'_test.csv')
+
+#%%
 ## データセットall作成
 csv_cont_all= []
 for i in number:
-    path4=os.path.join(path_before,'merge_'+str(i)+'.csv')
+    path4=os.path.join(current_path,'merge_'+str(i)+'_train.csv')
     if os.path.exists(path4):
         csv_cont_all.append(pd.read_csv(path4))
 merge_content_all = pd.concat(csv_cont_all)
 merge_content_all['date'] = pd.to_datetime(merge_content_all['date'])
-merge_content_all.info()
-merge_content_all.to_csv('merge_all.csv', encoding='utf_8',index=False)
+merge_content_all.to_csv('merge_all_train.csv', encoding='utf_8',index=False)
+
+csv_cont_all.clear()
+for i in number:
+    path4=os.path.join(current_path,'merge_'+str(i)+'_test.csv')
+    if os.path.exists(path4):
+        csv_cont_all.append(pd.read_csv(path4))
+merge_content_all = pd.concat(csv_cont_all)
+merge_content_all['date'] = pd.to_datetime(merge_content_all['date'])
+merge_content_all.to_csv('merge_all_test.csv', encoding='utf_8',index=False)
+
+
+# %%--テストデータ内の病気データをカウント
+dataset=['number1','number2','number3','all']
+for i in dataset:
+    df=pd.read_csv(os.path.join(current_path,'merge_'+str(i)+'_train.csv'))
+    vc = df['disease'].value_counts()
+    print(vc)
+for i in dataset:
+    df=pd.read_csv(os.path.join(current_path,'merge_'+str(i)+'_test.csv'))
+    vc = df['disease'].value_counts()
+    print(vc)
+
+
+
+# %%

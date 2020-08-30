@@ -12,6 +12,7 @@ path_before=os.path.join(current_path)
 file_name=os.listdir(path)
 # %%--平均値、最大値、最小値を出す
 number=['number1','number2','number3']
+#%%
 for i in file_name:
     for j in number:
         path2=os.path.join(path,str(i),str(j),'foo.csv.csv')
@@ -66,6 +67,7 @@ for i in number:
     merge_content['date'] = pd.to_datetime(merge_content['date'])
     merge=pd.merge(merge_disease,merge_content,on='date')
     merge=merge.dropna()
+    merge=merge.set_index('date')
     merge.to_csv('merge_'+str(i)+'_train.csv')
 #%%
 for i in number:
@@ -85,6 +87,7 @@ for i in number:
     merge_content['date'] = pd.to_datetime(merge_content['date'])
     merge=pd.merge(merge_disease,merge_content,on='date')
     merge=merge.dropna()
+    merge=merge.set_index('date')
     merge.to_csv('merge_'+str(i)+'_test.csv')
 
 #%%

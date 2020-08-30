@@ -68,7 +68,7 @@ for i in number:
     merge=pd.merge(merge_disease,merge_content,on='date')
     merge=merge.dropna()
     merge=merge.set_index('date')
-    merge.to_csv('merge_'+str(i)+'_train.csv')
+    merge.to_csv(os.path.join(path_before,'excel','merge_'+str(i)+'_train.csv'),encoding='utf_8',index=True)
 #%%
 for i in number:
     for j in test:
@@ -88,37 +88,37 @@ for i in number:
     merge=pd.merge(merge_disease,merge_content,on='date')
     merge=merge.dropna()
     merge=merge.set_index('date')
-    merge.to_csv('merge_'+str(i)+'_test.csv')
+    merge.to_csv(os.path.join(path_before,'excel','merge_'+str(i)+'_test.csv'),encoding='utf_8',index=True)
 
 #%%
 ## データセットall作成
 csv_cont_all= []
 for i in number:
-    path4=os.path.join(current_path,'merge_'+str(i)+'_train.csv')
+    path4=os.path.join(path_before,'excel','merge_'+str(i)+'_train.csv')
     if os.path.exists(path4):
         csv_cont_all.append(pd.read_csv(path4))
 merge_content_all = pd.concat(csv_cont_all)
 merge_content_all['date'] = pd.to_datetime(merge_content_all['date'])
-merge_content_all.to_csv('merge_all_train.csv', encoding='utf_8',index=False)
+merge_content_all.to_csv(os.path.join(path_before,'excel','merge_all_train.csv'), encoding='utf_8',index=False)
 
 csv_cont_all.clear()
 for i in number:
-    path4=os.path.join(current_path,'merge_'+str(i)+'_test.csv')
+    path4=os.path.join(path_before,'excel','merge_'+str(i)+'_test.csv')
     if os.path.exists(path4):
         csv_cont_all.append(pd.read_csv(path4))
 merge_content_all = pd.concat(csv_cont_all)
 merge_content_all['date'] = pd.to_datetime(merge_content_all['date'])
-merge_content_all.to_csv('merge_all_test.csv', encoding='utf_8',index=False)
+merge_content_all.to_csv(os.path.join(path_before,'excel','merge_all_test.csv'), encoding='utf_8',index=False)
 
 
 # %%--テストデータ内の病気データをカウント
 dataset=['number1','number2','number3','all']
 for i in dataset:
-    df=pd.read_csv(os.path.join(current_path,'merge_'+str(i)+'_train.csv'))
+    df=pd.read_csv(os.path.join(path_before,'excel','merge_'+str(i)+'_train.csv'))
     vc = df['disease'].value_counts()
     print(vc)
 for i in dataset:
-    df=pd.read_csv(os.path.join(current_path,'merge_'+str(i)+'_test.csv'))
+    df=pd.read_csv(os.path.join(path_before,'excel','merge_'+str(i)+'_test.csv'))
     vc = df['disease'].value_counts()
     print(vc)
 

@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import glob
 from datetime import datetime
-
+from datetime import time
 #%%--pathを取得
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'data')
@@ -18,12 +18,26 @@ for i in file_name:
         path2=os.path.join(path,str(i),str(j),'foo.csv.csv')
         if os.path.exists(path2):
             data=pd.read_csv(path2)
+            data['Date/Time'] = pd.to_datetime(data['Date/Time'])
+            data=data.set_index('Date/Time')
+            data2=data.between_time('0:00','17:00')
+            data2.to_csv(os.path.join(path,str(i),str(j),'environment_data2.csv'))
+            
+#%%
+for i in file_name:
+    for j in number:
+        path2=os.path.join(path,str(i),str(j),'foo.csv.csv')
+        if os.path.exists(path2):
+            data=pd.read_csv(path2)
             dTime=pd.read_csv(path2, usecols=[0])
             dT20=pd.read_csv(path2, usecols=[1])
             dST=pd.read_csv(path2, usecols=[2])
             dT60=pd.read_csv(path2, usecols=[3])
             dH=pd.read_csv(path2, usecols=[4])
             data['Date/Time'] = pd.to_datetime(data['Date/Time'])
+            data=data.set_index('Date/Time')
+            data2=data.between_time('0:00','17:00')
+            data2.to_csv(os.path.join(path,str(i),str(j),'environment_data2.csv'))
             ##-- 日にちごとにgroupby
             data['date'] = data['Date/Time'].dt.date
             mean=data.groupby(['date']).mean()
@@ -31,17 +45,29 @@ for i in file_name:
             max=data.groupby(['date']).max()
             min.drop("Date/Time", axis='columns',inplace=True)
             max.drop("Date/Time", axis='columns',inplace=True)
+            #data=data.set_index('date')
+            data3=pd.read_csv(os.path.join(path,str(i),str(j),'environment_data2.csv'))
+            mean2=data3.groupby(['date']).mean()
+            min2=data3.groupby(['date']).min()
+            max2=data3.groupby(['date']).max()
+            min2.drop("Date/Time", axis='columns',inplace=True)
+            max2.drop("Date/Time", axis='columns',inplace=True)
+            connect0=pd.merge(mean2,min2,on='date')
+            connect1=pd.merge(connect0,max2,on='date')
+            #connect1.rename(columns={'T20_x': 'T20_mean', 'ST_x': 'ST_mean', 'T60_x':'T60_mean','H_x':'H_mean', 'T20_y':'T20_min', 'ST_y':'ST_min', 'T60_y':'T60_min', 'H_y':'H_min', 'T20':'T20_max','ST':'ST_max', 'T60':'T60_max', 'H':'H_max'},inplace=True)
             connect2=pd.merge(mean,min,on='date')
             connect3=pd.merge(connect2,max,on='date')
-            connect3.rename(columns={'T20_x': 'T20_mean', 'ST_x': 'ST_mean', 'T60_x':'T60_mean','H_x':'H_mean', 'T20_y':'T20_min', 'ST_y':'ST_min', 'T60_y':'T60_min', 'H_y':'H_min', 'T20':'T20_max','ST':'ST_max', 'T60':'T60_max', 'H':'H_max'},inplace=True)
+            
             connect3.to_csv(os.path.join(path,str(i),str(j),'environment_data.csv'))
             ##connect3=connect3.set_index('date')
-            df_connect3=pd.merge(connect3.shift(2),connect3.shift(3),on='date')
-            df_connect4=pd.merge(df_connect3,connect3.shift(4),on='date')
+            df_connect3=pd.merge(connect1.shift(1),connect3.shift(2),on='date')
+            df_connect4=pd.merge(df_connect3,connect3.shift(3),on='date')
             df_connect4=df_connect4.dropna()
-            df_connect4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
+            feature = ["T20_mean_x","ST_mean_x","T60_mean_x","H_mean_x","T20_min_x","ST_min_x","T60_min_x","H_min_x","T20_max_x","ST_max_x","T60_max_x","H_max_x","T20_mean_y","ST_mean_y","T60_mean_y","H_mean_y","T20_min_y","ST_min_y","T60_min_y","H_min_y","T20_max_y","ST_max_y","T60_max_y","H_max_y","T20_mean_z","ST_mean_z","T60_mean_z","H_mean_z","T20_min_z","ST_min_z","T60_min_z","H_min_z","T20_max_z","ST_max_z","T60_max_z","H_max_z"]
+            ##df_connect4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
             ##df_connect4.drop_duplicates(subset='date')
             ##df_connect4=df_connect4.set_index('date')
+            df_connect4.columns = feature
             df_connect4.to_csv(os.path.join(path,str(i),str(j),'shift_'+str(i)+'.csv'),encoding='utf_8',index=True)
 #%%--データセットごとにまとめる
 csv_cont= []

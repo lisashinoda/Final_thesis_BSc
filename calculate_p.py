@@ -39,17 +39,17 @@ for i in ['number1','number2','number3','all']:
     train2=pd.read_csv(path_train2,usecols=[0,1])
     test2=pd.read_csv(path_test2,usecols=[0,1])
     if i=='number1':
-        train=pd.read_csv(path_train,usecols=[5,6,7,9,11,12,13,14,15,16,17,18,19,20])
-        test=pd.read_csv(path_test,usecols=[5,6,7,9,11,12,13,14,15,16,17,18,19,20])
+        train=pd.read_csv(path_train,usecols=[0,1,2,4,5,6,7,12,13,14,15,16,18,19,20,21])
+        test=pd.read_csv(path_test,usecols=[0,1,2,4,5,6,7,12,13,14,15,16,18,19,20,21])
     if i=='number2':
-        train=pd.read_csv(path_train,usecols=[1,2,7,9,12,13,14,16,18,20,21,22])
-        test=pd.read_csv(path_test,usecols=[1,2,7,9,12,13,14,16,18,20,21,22])
+        train=pd.read_csv(path_train,usecols=[0,1,4,5,6,7,8,9,12,13,15,17,18,19,20,21])
+        test=pd.read_csv(path_test,usecols=[0,1,4,5,6,7,8,9,12,13,15,17,18,19,20,21])
     if i=='number3':
-        train=pd.read_csv(path_train,usecols=[1,4,5,6,11,13,14,15,16,17,19,20,22])
-        test=pd.read_csv(path_test,usecols=[1,4,5,6,11,13,14,15,16,17,19,20,22])
+        train=pd.read_csv(path_train,usecols=[4,5,8,13,16,17,18,19,21])
+        test=pd.read_csv(path_test,usecols=[4,5,8,13,16,17,18,19,21])
     if i=='all':
-        train=pd.read_csv(path_train,usecols=[0,1,7,15,17,18,23])
-        test=pd.read_csv(path_test,usecols=[0,1,7,15,17,18,23])
+        train=pd.read_csv(path_train,usecols=[0,1,3,6,8,14,16,17,22])
+        test=pd.read_csv(path_test,usecols=[0,1,3,6,8,14,16,17,22])
     df_train=pd.concat([train2,train],axis=1)
     df_test=pd.concat([test2,test],axis=1)
     df_train.to_csv(os.path.join(path,'crr_p_'+str(i)+'_train.csv'), encoding='utf_8',index=False)

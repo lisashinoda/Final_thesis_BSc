@@ -8,8 +8,8 @@ import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'excel')
 #%%
-for i in ['number1','number2','number3','all']:
-#for i in ['all']:
+#for i in ['number1','number2','number3']:
+for i in ['all']:
     x_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37])
     y_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[1])
     # 18つの特徴量を選択

@@ -60,7 +60,8 @@ import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'')
 save_path2=os.path.join(current_path,'prob','details')
-number=['number1','number2','number3','all']
+#number=['number1','number2','number3','all']
+number=['all']
 #%%
 ##特徴量選択前
 for i in number:
@@ -68,6 +69,7 @@ for i in number:
     path_train=os.path.join(current_path,'excel','merge_'+str(i)+'_train.csv')
     path_test=os.path.join(current_path,'excel','merge_'+str(i)+'_test.csv')
     print(randomforest(path_train,path_test))
+#%%
 
 ##方法A
 for i in number:

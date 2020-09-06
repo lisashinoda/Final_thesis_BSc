@@ -62,13 +62,15 @@ for i in file_name:
             ##connect3=connect3.set_index('date')
             df_connect3=pd.merge(connect1.shift(1),connect3.shift(2),on='date')
             df_connect4=pd.merge(df_connect3,connect3.shift(3),on='date')
-            df_connect4=df_connect4.dropna()
-            feature = ["T20_mean_x","ST_mean_x","T60_mean_x","H_mean_x","T20_min_x","ST_min_x","T60_min_x","H_min_x","T20_max_x","ST_max_x","T60_max_x","H_max_x","T20_mean_y","ST_mean_y","T60_mean_y","H_mean_y","T20_min_y","ST_min_y","T60_min_y","H_min_y","T20_max_y","ST_max_y","T60_max_y","H_max_y","T20_mean_z","ST_mean_z","T60_mean_z","H_mean_z","T20_min_z","ST_min_z","T60_min_z","H_min_z","T20_max_z","ST_max_z","T60_max_z","H_max_z"]
+            df_connect5=pd.merge(df_connect3,connect4.shift(4),on='date')
+            df_connect6=pd.merge(df_connect3,connect4.shift(5),on='date')
+            df_connect6=df_connect6.dropna()
+            feature = ["T20_mean_x","ST_mean_x","T60_mean_x","H_mean_x","T20_min_x","ST_min_x","T60_min_x","H_min_x","T20_max_x","ST_max_x","T60_max_x","H_max_x","T20_mean_y","ST_mean_y","T60_mean_y","H_mean_y","T20_min_y","ST_min_y","T60_min_y","H_min_y","T20_max_y","ST_max_y","T60_max_y","H_max_y","T20_mean_z","ST_mean_z","T60_mean_z","H_mean_z","T20_min_z","ST_min_z","T60_min_z","H_min_z","T20_max_z","ST_max_z","T60_max_z","H_max_z","T20_mean_a","ST_mean_a","T60_mean_a","H_mean_a","T20_min_a","ST_min_a","T60_min_a","H_min_a","T20_max_a","ST_max_a","T60_max_a","H_max_a","T20_mean_b","ST_mean_b","T60_mean_b","H_mean_b","T20_min_b","ST_min_b","T60_min_b","H_min_b","T20_max_b","ST_max_b","T60_max_b","H_max_b"]
             ##df_connect4.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
             ##df_connect4.drop_duplicates(subset='date')
             ##df_connect4=df_connect4.set_index('date')
-            df_connect4.columns = feature
-            df_connect4.to_csv(os.path.join(path,str(i),str(j),'shift_'+str(i)+'.csv'),encoding='utf_8',index=True)
+            df_connect6.columns = feature
+            df_connect6.to_csv(os.path.join(path,str(i),str(j),'shift_'+str(i)+'.csv'),encoding='utf_8',index=True)
 #%%--トレーニングデータセット
 csv_cont= []
 disease_red=[]

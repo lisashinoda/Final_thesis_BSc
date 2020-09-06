@@ -70,7 +70,6 @@ for i in number:
     path_train=os.path.join(current_path,'excel','merge_'+str(i)+'_train.csv')
     path_test=os.path.join(current_path,'excel','merge_'+str(i)+'_test.csv')
     print(main(path_train,path_test))
-#%%
 ##方法A
 for i in number:
     k='selectA'

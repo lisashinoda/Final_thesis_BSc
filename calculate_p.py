@@ -39,8 +39,8 @@ for i in ['number1','number2','number3','all']:
     train2=pd.read_csv(path_train2,usecols=[0,1])
     test2=pd.read_csv(path_test2,usecols=[0,1])
     if i=='number1':
-        train=pd.read_csv(path_train,usecols=[0,1,2,4,5,6])
-        test=pd.read_csv(path_test,usecols=[0,1,2,4,5,6])
+        train=pd.read_csv(path_train,usecols=[0,1,2,3,4,5,6])
+        test=pd.read_csv(path_test,usecols=[0,1,2,3,4,5,6])
     if i=='number2':
         train=pd.read_csv(path_train,usecols=[0,1,4,6,7])
         test=pd.read_csv(path_test,usecols=[0,1,4,6,7])

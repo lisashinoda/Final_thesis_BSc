@@ -20,6 +20,7 @@ def ROC (model):
     prob4=[]
     method=['normal','selectA','selectB']
     number=['number1','number2','number3','all']
+    #number=['all']
 
     current_path=os.path.dirname(os.path.abspath("__file__"))
     path=os.path.join(current_path,'prob')
@@ -29,17 +30,17 @@ def ROC (model):
         for k in method:
             y_pred_prob=pd.read_csv(os.path.join(path,'csv','prob_'+str(i)+'_'+str(model)+'_'+str(k)+'.csv'),usecols=[1])
             if i=='number1':
-                    prob1.append(y_pred_prob)
-                    prob=prob1
+                prob1.append(y_pred_prob)
+                prob=prob1
             if i=='number2':
-                    prob2.append(y_pred_prob)
-                    prob=prob2
+                prob2.append(y_pred_prob)
+                prob=prob2
             if i=='number3':
-                    prob3.append(y_pred_prob)
-                    prob=prob3
+                prob3.append(y_pred_prob)
+                prob=prob3
             if i=='all':
-                    prob4.append(y_pred_prob)
-                    prob=prob4
+                prob4.append(y_pred_prob)
+                prob=prob4
         y_test=pd.read_csv(path_test,usecols=['disease'])
         plt.figure(figsize=(20, 11)) 
         fpr1, tpr1,thresholds1 = metrics.roc_curve(y_test, prob[0][:])

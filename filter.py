@@ -21,11 +21,15 @@ for i in ['number1','number2','number3','all']:
     for j in vector_names:
         merge1=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=['date',j])
         sum_train=pd.merge(sum_train,merge1,on='date')
+    sum_train['date']=pd.to_datetime(sum_train['date'])
+    sum_train.drop_duplicates(subset='date')
     sum_train.to_csv(os.path.join(path,'select_'+str(i)+'_train.csv'), encoding='utf_8',index=False)
     sum_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'),usecols=['date','disease'])
     for j in vector_names:
         merge2=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'),usecols=['date',j])
         sum_test=pd.merge(sum_test,merge2,on='date')
+    sum_test['date']=pd.to_datetime(sum_test['date'])
+    sum_test.drop_duplicates(subset='date')
     sum_test.to_csv(os.path.join(path,'select_'+str(i)+'_test.csv'), encoding='utf_8',index=False)
     
 

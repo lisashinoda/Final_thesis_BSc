@@ -13,10 +13,10 @@ path=os.path.join(current_path,'excel')
 for i in ['all']:
     x_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'))
     x_train['date'] = pd.to_datetime(x_train['date'])
-    x_train=x_train.iloc[:,2:62]
+    x_train=x_train.iloc[:,2:86]
     y_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[1])
     # 18つの特徴量を選択
-    selector = SelectKBest(score_func=f_regression, k=30) 
+    selector = SelectKBest(score_func=f_regression, k=42) 
     selector.fit(x_train, y_train)
     vector_names = list(x_train.columns[selector.get_support(indices=True)])
     print(vector_names)

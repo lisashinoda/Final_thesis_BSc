@@ -7,28 +7,28 @@ import seaborn as sns
 import math
 from sklearn.model_selection import train_test_split
 #%%
-number=["x","y","z"]
-day=['1','2','3']
+number=["x","y","z","a","b"]
+day=['1','2','3','4','5']
 def data_see(df):
-     for i,k in zip (number,day):
-        sns.set()
-        sns.set_style('whitegrid')
-        sns.set_palette('Set1')
-        fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
-        ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
-        ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
-        ax.set_xlabel('Housa')
-        ax.set_ylabel('Count')
-        if not j == 'merge_all':
-            ax.set(xlim=(0,13), ylim=(0,30))
-        if  j == 'merge_all':
-            ax.set(xlim=(0,13))
-        plt.legend(['Disease', 'Not disease'])
-        #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
-        image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
-        plt.savefig(image_path)
-#%%%
+    #  for i,k in zip (number,day):
+    #     sns.set()
+    #     sns.set_style('whitegrid')
+    #     sns.set_palette('Set1')
+    #     fig = plt.figure()
+    #     ax = fig.add_subplot(1, 1, 1)
+    #     ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+    #     ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+    #     ax.set_xlabel('Housa')
+    #     ax.set_ylabel('Count')
+    #     if not j == 'merge_all':
+    #         ax.set(xlim=(0,13), ylim=(0,30))
+    #     if  j == 'merge_all':
+    #         ax.set(xlim=(0,13))
+    #     plt.legend(['Disease', 'Not disease'])
+    #     #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
+    #     image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
+    #     plt.savefig(image_path)
+
     for i,k in zip (number,day):
         sns.set()
         sns.set_style('whitegrid')
@@ -42,7 +42,7 @@ def data_see(df):
         if not j == 'merge_all':
             ax.set(xlim=(10,35), ylim=(0,28))
         if  j == 'merge_all':
-            ax.set(xlim=(10,35))
+            ax.set(xlim=(3,47))
         plt.legend(['Disease', 'Not disease'])
         #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
         image_path=os.path.join(save_path,''+str(j)+'_meantemp20(t-'+str(k)+').png')
@@ -62,7 +62,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(3,29), ylim=(0,52))
         if j=='merge_all':
-            ax.set(xlim=(3,29))
+            ax.set(xlim=(3,47))
         image_path=os.path.join(save_path,''+str(j)+'_mintemp20(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -80,7 +80,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(13,45), ylim=(0,23))
         if j=='merge_all':
-            ax.set(xlim=(13,45))
+            ax.set(xlim=(3,47))
         image_path=os.path.join(save_path,''+str(j)+'_maxtemp20(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -98,7 +98,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(3,32), ylim=(0,33))
         if j=='merge_all':
-            ax.set(xlim=(3,32))
+            ax.set(xlim=(3,53))
         #plt.savefig(''+str(j)+'_meantemp60(t-'+str(k)+').png')
         image_path=os.path.join(save_path,''+str(j)+'_meantemp60(t-'+str(k)+').png')
         plt.savefig(image_path)
@@ -117,7 +117,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(2,29), ylim=(0,33))
         if j=='merge_all':
-            ax.set(xlim=(2,29))
+            ax.set(xlim=(2,53))
         image_path=os.path.join(save_path,''+str(j)+'_mintemp60(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -153,7 +153,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(10,33), ylim=(0,23))
         if j=='merge_all':
-            ax.set(xlim=(10,33))
+            ax.set(xlim=(6,38))
         image_path=os.path.join(save_path,''+str(j)+'_meanST(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -171,7 +171,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(6,29), ylim=(0,39))
         if j=='merge_all':
-            ax.set(xlim=(6,29))
+            ax.set(xlim=(6,38))
         image_path=os.path.join(save_path,''+str(j)+'_minST(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -189,7 +189,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(12,38), ylim=(0,24))
         if j=='merge_all':
-            ax.set(xlim=(12,38))
+            ax.set(xlim=(6,38))
         image_path=os.path.join(save_path,''+str(j)+'_maxST(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -225,7 +225,7 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(15,103), ylim=(0,24))
         if j=='merge_all':
-            ax.set(xlim=(15,103))
+            ax.set(xlim=(9,103))
         image_path=os.path.join(save_path,''+str(j)+'_minH(t-'+str(k)+').png')
         plt.savefig(image_path)
 
@@ -243,34 +243,35 @@ def data_see(df):
         if not j=='merge_all':
             ax.set(xlim=(65,103), ylim=(0,150))
         if j=='merge_all':
-            ax.set(xlim=(65,103))
+            ax.set(xlim=(9,103))
         image_path=os.path.join(save_path,''+str(j)+'_maxH(t-'+str(k)+').png')
         plt.savefig(image_path)
 
-    for i,k in zip (number,day):
-        sns.set()
-        sns.set_style('whitegrid')
-        sns.set_palette('Set1')
-        fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
-        ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
-        ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
-        ax.set_xlabel('Mean Temperature 20cm(°c)')
-        ax.set_ylabel('Count')
-        if not j == 'merge_all':
-            ax.set(xlim=(0,13), ylim=(0,30))
-        if  j == 'merge_all':
-            ax.set(xlim=(0,13))
-        plt.legend(['Disease', 'Not disease'])
-        #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
-        image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
-        plt.savefig(image_path)
+    # for i,k in zip (number,day):
+    #     sns.set()
+    #     sns.set_style('whitegrid')
+    #     sns.set_palette('Set1')
+    #     fig = plt.figure()
+    #     ax = fig.add_subplot(1, 1, 1)
+    #     ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+    #     ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+    #     ax.set_xlabel('Mean Temperature 20cm(°c)')
+    #     ax.set_ylabel('Count')
+    #     if not j == 'merge_all':
+    #         ax.set(xlim=(0,13), ylim=(0,30))
+    #     if  j == 'merge_all':
+    #         ax.set(xlim=(0,13))
+    #     plt.legend(['Disease', 'Not disease'])
+    #     #plt.savefig(''+str(j)+'_meantemp20(t-'+str(k)+').png')
+    #     image_path=os.path.join(save_path,''+str(j)+'_housa(t-'+str(k)+').png')
+    #     plt.savefig(image_path)
 # %%
 import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'')
 save_path=os.path.join(current_path,'graph')
-data=['merge_number1','merge_number2','merge_number3','merge_all']
+#data=['merge_number1','merge_number2','merge_number3','merge_all']
+data=['merge_all']
 if not os.path.isdir(save_path):
     os.makedirs(save_path)
 for j in data:

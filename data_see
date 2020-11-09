@@ -1,0 +1,21 @@
+
+#%%
+import os
+import pandas as pd
+import numpy as np
+import glob
+from datetime import datetime
+from datetime import time
+from sklearn.model_selection import train_test_split
+from matplotlib import pylab as plt
+#%%--pathを取得
+current_path=os.path.dirname(os.path.abspath("__file__"))
+path=os.path.join(current_path,'excel')
+# %%
+dataset=['number1','number2','number3','all']
+for i in dataset:
+    df=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'),usecols=[0,1],index_col='date')
+    #print(df)
+    plt.plot(df)
+
+# %%

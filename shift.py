@@ -62,4 +62,6 @@ for i in dataset:
     vc = df['disease'].value_counts()
     print(vc)
 
+
+
 # %%

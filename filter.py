@@ -1,5 +1,4 @@
 #%%
-from sklearn.datasets import load_boston
 from sklearn.feature_selection import SelectKBest, f_regression
 import pandas as pd
 from pandas import read_csv

@@ -13,7 +13,7 @@ path_before=os.path.join(current_path)
 file_name=os.listdir(path)
 # %%--平均値、最大値、最小値を出す
 number=['number1','number2','number3']
-#%%
+#%%--18時までのデータセット
 for i in file_name:
     for j in number:
         path2=os.path.join(path,str(i),str(j),'foo.csv.csv')

@@ -270,8 +270,8 @@ import os
 current_path=os.path.dirname(os.path.abspath("__file__"))
 path=os.path.join(current_path,'')
 save_path=os.path.join(current_path,'graph')
-#data=['merge_number1','merge_number2','merge_number3','merge_all']
-data=['merge_all']
+data=['merge_number1','merge_number2','merge_number3','merge_all']
+#data=['merge_all']
 if not os.path.isdir(save_path):
     os.makedirs(save_path)
 for j in data:

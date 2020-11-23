@@ -277,6 +277,7 @@ if not os.path.isdir(save_path):
 for j in data:
     data=os.path.join(current_path,'excel',''+str(j)+'_train.csv')
     df=pd.read_csv(data)
+    
     df.rename(columns={'T20_mean': 'T20_mean_z', 'ST_mean': 'ST_mean_z', 'T60_mean':'T60_mean_z','H_mean':'H_mean_z', 'T20_min':'T20_min_z', 'ST_min':'ST_min_z', 'T60_min':'T60_min_z', 'H_min':'H_min_z', 'T20_max':'T20_max_z','ST_max':'ST_max_z', 'T60_max':'T60_max_z', 'H_max':'H_max_z'},inplace=True)
     data_see(df)
 

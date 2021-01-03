@@ -59,6 +59,7 @@ save_path2=os.path.join(current_path,'prob','details')
 number=['number1','number2','number3','all']
 if not os.path.isdir(save_path):
     os.makedirs(save_path)
+#%%
 ##特徴量選択前
 for i in number:
     k='normal'

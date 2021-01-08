@@ -13,6 +13,7 @@ path_before=os.path.join(current_path)
 file_name=os.listdir(path)
 # %%--平均値、最大値、最小値を出す
 number=['number1','number2','number3']
+#%%
 #%%--18時までのデータセット
 for i in file_name:
     for j in number:
@@ -24,7 +25,7 @@ for i in file_name:
             data2=data.between_time('0:00','18:00')
             data2.to_csv(os.path.join(path,str(i),str(j),'environment_data2.csv'))
             
-#%%
+#%%--データセットごとにshiftする
 for i in file_name:
     for j in number:
         path2=os.path.join(path,str(i),str(j),'foo.csv.csv')
@@ -54,11 +55,10 @@ for i in file_name:
             max2.drop("Date/Time", axis='columns',inplace=True)
             connect0=pd.merge(mean2,min2,on='date')
             connect1=pd.merge(connect0,max2,on='date')
-            #connect1.rename(columns={'T20_x': 'T20_mean', 'ST_x': 'ST_mean', 'T60_x':'T60_mean','H_x':'H_mean', 'T20_y':'T20_min', 'ST_y':'ST_min', 'T60_y':'T60_min', 'H_y':'H_min', 'T20':'T20_max','ST':'ST_max', 'T60':'T60_max', 'H':'H_max'},inplace=True)
             connect2=pd.merge(mean,min,on='date')
-            connect3=pd.merge(connect2,max,on='date')
-            
-            connect3.to_csv(os.path.join(path,str(i),str(j),'environment_data.csv'))
+            connect3=pd.merge(connect2,max,on='date') 
+            connect3.rename(columns={'T20_x': 'T20_mean', 'ST_x': 'ST_mean', 'T60_x':'T60_mean','H_x':'H_mean', 'T20_y':'T20_min', 'ST_y':'ST_min', 'T60_y':'T60_min', 'H_y':'H_min', 'T20':'T20_max','ST':'ST_max', 'T60':'T60_max', 'H':'H_max'},inplace=True)
+            connect3.to_csv(os.path.join(path,str(i),str(j),'environment_data_allday.csv'))
             ##connect3=connect3.set_index('date')
             df_connect3=pd.merge(connect1.shift(1),connect3.shift(2),on='date')
             df_connect4=pd.merge(df_connect3,connect3.shift(3),on='date')
@@ -72,6 +72,7 @@ for i in file_name:
             df_connect6.columns = feature
             df_connect6.to_csv(os.path.join(path,str(i),str(j),'shift_'+str(i)+'.csv'),encoding='utf_8',index=True)
 #%%--トレーニングデータセット
+#データセットごとにshiftしたものを統合
 csv_cont= []
 disease_red=[]
 train=['20160915data','20161115data','20170113data','20170510data','20170731data','20171012data','20171218data','20180322data','20180528data','20180810data','20181026data','20180108data','20190306data']
@@ -162,7 +163,7 @@ merge_train.drop_duplicates(subset='date')
 merge_test.drop_duplicates(subset='date')
 merge_train.to_csv(os.path.join(path_before,'excel','merge_all_train.csv'), encoding='utf_8',index=False)
 merge_test.to_csv(os.path.join(path_before,'excel','merge_all_test.csv'), encoding='utf_8',index=False)
-# %%--テストデータ内の病気データをカウント
+# %%--トレインデータ内の病気データをカウント
 dataset=['number1','number2','number3','all']
 for i in dataset:
     df=pd.read_csv(os.path.join(path_before,'excel','merge_'+str(i)+'_train.csv'))

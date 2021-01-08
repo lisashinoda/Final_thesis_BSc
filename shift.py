@@ -61,7 +61,4 @@ for i in dataset:
     df=pd.read_csv(os.path.join(save_path,'merge_'+str(i)+'_train.csv'))
     vc = df['disease'].value_counts()
     print(vc)
-
-
-
 # %%

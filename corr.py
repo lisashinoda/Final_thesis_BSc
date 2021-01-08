@@ -44,9 +44,9 @@ def corr_column(df, threshold):
 data=['number1','number2','number3','all']
 for i in data:
     x_train=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'))
-    x_train=x_train.iloc[:,2:62]
+    x_train=x_train.iloc[:,2:67]
     x_test=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'))
-    x_test=x_test.iloc[:,2:62]
+    x_test=x_test.iloc[:,2:67]
     train_corr=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_train.csv'))
     test_corr=pd.read_csv(os.path.join(path,'merge_'+str(i)+'_test.csv'))
     train_corr=train_corr[corr_column(x_train,0.95)]

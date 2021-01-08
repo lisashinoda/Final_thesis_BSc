@@ -283,4 +283,39 @@ for j in data:
 
 
 
+# %%--housaについて追加
+number=["x","y","z","a","b"]
+import os
+current_path=os.path.dirname(os.path.abspath("__file__"))
+path=os.path.join(current_path,'')
+save_path=os.path.join(current_path,'graph')
+data=['merge_number1','merge_number2','merge_number3','merge_all']
+#%%
+def housa(df):
+    for i in number:
+        sns.set()
+        sns.set_style('whitegrid')
+        sns.set_palette('Set1')
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.hist(df.query('disease=="1"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+        ax.hist(df.query('disease=="0"')['housa_'+str(i)+''], bins=50, alpha=0.6)
+        ax.set_xlabel('Housa(g/m3)')
+        ax.set_ylabel('Count')
+        plt.legend(['Disease', 'Not disease'])
+        if not j=='merge_all':
+            ax.set(xlim=(0,20), ylim=(0,40))
+        if j=='merge_all':
+            ax.set(xlim=(0,20),ylim=(0,60))
+        plt.show()
+        # image_path=os.path.join(save_path,''+str(j)+'_maxH(t-'+str(k)+').png')
+        # plt.savefig(image_path)
+#%%
+if not os.path.isdir(save_path):
+    os.makedirs(save_path)
+for j in data:
+    data=os.path.join(current_path,'excel',''+str(j)+'_train.csv')
+    df=pd.read_csv(data)
+    housa(df)
+
 # %%
